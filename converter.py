@@ -16,8 +16,9 @@ with open(f"{os.path.join(path,json_file_name)}", "r") as f:
     image_annotations = json.load(f)
 f.close()
 lista = []
-for idx, bbox in enumerate(image_annotation["Label"]["objects"]):
-    lista.append(bbox['value'])
+for image_annotation in image_annotations:
+    for i in image_annotation['Label']['objects']:
+        lista.append(i['value'])
          
 print ('Number of images with annotations: {}'.format(len(image_annotations)))
 print ('Classes in whole dataset: {}'.format(str(set(lista))))
